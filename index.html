@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discounted Scratch & Dent Appliances</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Layout -->
+    <div class="container">
+        <!-- Sidebar Filter -->
+        <aside class="filter-sidebar" aria-label="Filter products">
+            <h3>Filter By</h3>
+
+            <!-- Filter by Brand -->
+            <div class="filter-section">
+                <h4>Brand</h4>
+                <label for="brand-lg"><input type="checkbox" id="brand-lg" name="brand" value="LG"> LG</label><br>
+                <label for="brand-samsung"><input type="checkbox" id="brand-samsung" name="brand" value="Samsung"> Samsung</label><br>
+                <label for="brand-whirlpool"><input type="checkbox" id="brand-whirlpool" name="brand" value="Whirlpool"> Whirlpool</label><br>
+                <!-- Add more brands as needed -->
+            </div>
+
+            <!-- Filter by Price Range -->
+            <div class="filter-section">
+                <h4>Price Range</h4>
+                <label for="price-0-500"><input type="radio" id="price-0-500" name="price" value="0-500"> $0 - $500</label><br>
+                <label for="price-501-1000"><input type="radio" id="price-501-1000" name="price" value="501-1000"> $501 - $1000</label><br>
+                <label for="price-1001-1500"><input type="radio" id="price-1001-1500" name="price" value="1001-1500"> $1001 - $1500</label><br>
+                <!-- Add more ranges if needed -->
+            </div>
+
+            <!-- Filter by Depth -->
+            <div class="filter-section">
+                <h4>Depth</h4>
+                <label for="depth-standard"><input type="radio" id="depth-standard" name="depth" value="standard"> Standard Depth</label><br>
+                <label for="depth-counter"><input type="radio" id="depth-counter" name="depth" value="counter"> Counter Depth</label><br>
+            </div>
+
+            <!-- Filter by Appliance Type -->
+            <div class="filter-section">
+                <h4>Appliance Type</h4>
+                <label for="type-refrigerator"><input type="checkbox" id="type-refrigerator" name="type" value="Refrigerator"> Refrigerator</label><br>
+                <label for="type-washing-machine"><input type="checkbox" id="type-washing-machine" name="type" value="Washing Machine"> Washing Machine</label><br>
+                <!-- Add more types if needed -->
+            </div>
+
+        </aside>
+
+        <!-- Main Product Display Section -->
+        <main class="product-section" aria-label="Available products">
+            <h2>Available Products</h2>
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be loaded here via JavaScript -->
+            </div>
+        </main>        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

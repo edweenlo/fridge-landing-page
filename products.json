@@ -1,0 +1,71 @@
+[
+    {
+      "productName": "LG French Door Refrigerator",
+      "brand": "LG",
+      "model": "LFXS26973S",
+      "color": "Stainless Steel",
+      "stainlessSteel": true,
+      "dimensions": {
+        "height": 69.75,
+        "width": 35.75,
+        "depth": 33
+      },
+      "cuFt": 26.2,
+      "price": 1800,
+      "iceMaker": true,
+      "images": [
+        "images/samsung-fridge-side-by-side1.jpg",
+        "images/samsung-fridge-side-by-side2.jpg"
+      ],
+      "type": "Refrigerator",
+      "depth": "standard"
+    },
+    {
+      "productName": "Samsung Side-by-Side Refrigerator",
+      "brand": "Samsung",
+      "model": "RS27T5200SR",
+      "color": "Stainless Steel",
+      "stainlessSteel": true,
+      "dimensions": {
+        "height": 70.06,
+        "width": 35.88,
+        "depth": 33.5
+      },
+      "cuFt": 27.4,
+      "price": 1600,
+      "iceMaker": true,
+      "images": [
+        "images/samsung-fridge-side-by-side1.jpg",
+        "images/samsung-fridge-side-by-side1.jpg",
+        "images/samsung-fridge-side-by-side1.jpg"
+      ],
+      "type": "Refrigerator",
+      "depth": "counter"
+    },
+    {
+      "productName": "Whirlpool Top-Freezer Refrigerator",
+      "brand": "Whirlpool",
+      "model": "WRT518SZFM",
+      "color": "Monochromatic Stainless Steel",
+      "stainlessSteel": true,
+      "dimensions": {
+        "height": 65.88,
+        "width": 28,
+        "depth": 32.88
+      },
+      "cuFt": 18,
+      "price": 800,
+      "iceMaker": false,
+      "images": [
+        "images/samsung-fridge-side-by-side1.jpg",
+        "images/samsung-fridge-side-by-side1.jpg",
+        "images/samsung-fridge-side-by-side1.jpg"
+      ],
+      "type": "Refrigerator",
+      "depth": "standard"
+    }
+    
+  ]
+
+
+  
