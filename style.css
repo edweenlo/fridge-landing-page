@@ -297,12 +297,13 @@ body, html {
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
+        overflow-y: hidden;
         gap: 2px;
         order: 0;
         width: 100%;
         padding: 0;
         margin-bottom: 20px;
-        background-color:silver;
+        background-color:green;
         height: 130px;
     }
 
