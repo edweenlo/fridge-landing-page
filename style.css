@@ -97,7 +97,7 @@ body, html {
     background-image: url("/images/fridge-hero-img.JPG");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 200px;
+    height: 300px;
 }
 
 .hero::before {
@@ -114,6 +114,7 @@ body, html {
 
 .hero h1, .hero h2 {
     position: relative;
+
     z-index: 2; /* Ensure text is above overlay */
 }
 
@@ -123,6 +124,7 @@ body, html {
     font-weight: bold;
     margin-bottom: 10px;
     letter-spacing: 1px;
+    padding-top: 4%;
 }
 
 .hero h2 {
@@ -157,13 +159,6 @@ body, html {
     font-weight: bold;
 }
 
-/* Filter Item Styles */
-.filter-section label {
-    display: block;
-    margin: 0 0 0 10px;
-    padding: 0;
-    cursor: pointer;
-}
 
 /* Filter Item Styles */
 .filter-section label {
@@ -185,7 +180,7 @@ body, html {
 
 /* Filter Section Titles */
 .filter-section h4 {
-    margin-top: 8px;
+    margin-top: 15px;
     font-size: 14px; /* Reduced font size */
     font-weight: bold;
 }
