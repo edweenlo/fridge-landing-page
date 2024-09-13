@@ -36,6 +36,100 @@
 <div class="container">
     <!-- Sidebar Filter -->
     
+    <aside class="filter-sidebar" aria-label="Filter products">
+        <h3>Filter By</h3>
+
+        <!-- Filter by Appliance Type -->
+        <div class="filter-section">
+            <h4>Appliance Type</h4>
+            <select class="mobile-dropdown" name="applianceType">
+                <option value="">Select Appliance Type</option>
+                <option value="Refrigerator">Refrigerator</option>
+                <option value="Washer">Washer</option>
+                <option value="Dryer">Dryer</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="checkbox" name="applianceType" value="Refrigerator"> Refrigerator</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="applianceType" value="Washer"> Washer</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="applianceType" value="Dryer"> Dryer</label><br>
+        </div>
+
+        <!-- Filter by Configuration -->
+        <div class="filter-section">
+            <h4>Configuration</h4>
+            <select class="mobile-dropdown" name="configuration">
+                <option value="">Select Configuration</option>
+                <option value="French Door">French Door</option>
+                <option value="Side-by-Side">Side-by-Side</option>
+                <option value="Top Freezer">Top Freezer</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="checkbox" name="configuration" value="French Door"> French Door</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="configuration" value="Side-by-Side"> Side-by-Side</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="configuration" value="Top Freezer"> Top Freezer</label><br>
+        </div>
+
+        <!-- Filter by Brand -->
+        <div class="filter-section">
+            <h4>Brand</h4>
+            <select class="mobile-dropdown" name="brand">
+                <option value="">Select Brand</option>
+                <option value="LG">LG</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Whirlpool">Whirlpool</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="checkbox" name="brand" value="LG"> LG</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="brand" value="Samsung"> Samsung</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="brand" value="Whirlpool"> Whirlpool</label><br>
+        </div>
+
+        <!-- Filter by Color -->
+        <div class="filter-section">
+            <h4>Color</h4>
+            <select class="mobile-dropdown" name="color">
+                <option value="">Select Color</option>
+                <option value="Stainless Steel">Stainless Steel</option>
+                <option value="White">White</option>
+                <option value="Black">Black</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="checkbox" name="color" value="Stainless Steel"> Stainless Steel</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="color" value="White"> White</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="color" value="Black"> Black</label><br>
+        </div>
+
+        <!-- Filter by Ice Maker -->
+        <div class="filter-section">
+            <h4>Ice Maker</h4>
+            <select class="mobile-dropdown" name="iceMaker">
+                <option value="">Select Ice Maker</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="radio" name="iceMaker" value="true"> Yes</label><br>
+            <label class="desktop-checkbox"><input type="radio" name="iceMaker" value="false"> No</label><br>
+        </div>
+
+        <!-- Filter by Price Range -->
+        <div class="filter-section">
+            <h4>Price Range</h4>
+            <select class="mobile-dropdown" name="price">
+                <option value="">Select Price Range</option>
+                <option value="0-500">$0 - $500</option>
+                <option value="501-1000">$501 - $1000</option>
+                <option value="1001-1500">$1001 - $1500</option>
+                <option value="1501-2000">$1501 - $2000</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="radio" name="price" value="0-500">$0 - $500</label><br>
+            <label class="desktop-checkbox"><input type="radio" name="price" value="501-1000">$501 - $1000</label><br>
+            <label class="desktop-checkbox"><input type="radio" name="price" value="1001-1500">$1001 - $1500</label><br>
+            <label class="desktop-checkbox"><input type="radio" name="price" value="1501-2000">$1501 - $2000</label><br>
+        </div>
+    </aside>
+
     <!-- Main Product Display Section -->
     <main id="products" class="product-section" aria-label="Available products">
         <h2>Available Products</h2>
