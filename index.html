@@ -5,59 +5,199 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discounted Scratch & Dent Appliances</title>
     <link rel="stylesheet" href="style.css">
+        <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.ico"> <!-- Adjust path if needed -->
+
 </head>
 <body>
 
-    <!-- Main Layout -->
-    <div class="container">
-        <!-- Sidebar Filter -->
-        <aside class="filter-sidebar" aria-label="Filter products">
-            <h3>Filter By</h3>
-
-            <!-- Filter by Brand -->
-            <div class="filter-section">
-                <h4>Brand</h4>
-                <label for="brand-lg"><input type="checkbox" id="brand-lg" name="brand" value="LG"> LG</label><br>
-                <label for="brand-samsung"><input type="checkbox" id="brand-samsung" name="brand" value="Samsung"> Samsung</label><br>
-                <label for="brand-whirlpool"><input type="checkbox" id="brand-whirlpool" name="brand" value="Whirlpool"> Whirlpool</label><br>
-                <!-- Add more brands as needed -->
-            </div>
-
-            <!-- Filter by Price Range -->
-            <div class="filter-section">
-                <h4>Price Range</h4>
-                <label for="price-0-500"><input type="radio" id="price-0-500" name="price" value="0-500"> $0 - $500</label><br>
-                <label for="price-501-1000"><input type="radio" id="price-501-1000" name="price" value="501-1000"> $501 - $1000</label><br>
-                <label for="price-1001-1500"><input type="radio" id="price-1001-1500" name="price" value="1001-1500"> $1001 - $1500</label><br>
-                <!-- Add more ranges if needed -->
-            </div>
-
-            <!-- Filter by Depth -->
-            <div class="filter-section">
-                <h4>Depth</h4>
-                <label for="depth-standard"><input type="radio" id="depth-standard" name="depth" value="standard"> Standard Depth</label><br>
-                <label for="depth-counter"><input type="radio" id="depth-counter" name="depth" value="counter"> Counter Depth</label><br>
-            </div>
-
-            <!-- Filter by Appliance Type -->
-            <div class="filter-section">
-                <h4>Appliance Type</h4>
-                <label for="type-refrigerator"><input type="checkbox" id="type-refrigerator" name="type" value="Refrigerator"> Refrigerator</label><br>
-                <label for="type-washing-machine"><input type="checkbox" id="type-washing-machine" name="type" value="Washing Machine"> Washing Machine</label><br>
-                <!-- Add more types if needed -->
-            </div>
-
-        </aside>
-
-        <!-- Main Product Display Section -->
-        <main class="product-section" aria-label="Available products">
-            <h2>Available Products</h2>
-            <div class="product-grid" id="productGrid">
-                <!-- Products will be loaded here via JavaScript -->
-            </div>
-        </main>        
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="top-bar-left">
+        <a href="#hero" class="logo-link">
+            <img src="images/flwlogo-cropped.png" alt="Company Logo" class="top-bar-logo">
+        </a>
+        <a href="#products">Products</a>
+        <a href="#shipping">Shipping Information</a>
+        <a href="#about">About Us</a>
     </div>
+    <div class="top-bar-right">
+        <p>📍 7562 Orangewood Ave, Stanton, CA 90680 | 9AM - 5PM | <a href="tel:7143768210">📞 714-376-8210</a></p>
+    </div>
+</div>
+    
+<!-- Hero -->
+<div class="hero" id="hero">
+    <h1>Premium Appliances, Discounted Prices</h1>
+    <h2>Save big on open box, returned, and scratch-and-dent models from top brands</h2>
+</div>
 
-    <script src="script.js"></script>
+<!-- Main Layout -->
+<div class="container">
+    <!-- Sidebar Filter -->
+    <aside class="filter-sidebar" aria-label="Filter products">
+        <h3>Filter By</h3>
+
+        <!-- Filter by Appliance Type -->
+        <div class="filter-section">
+            <h4>Appliance Type</h4>
+            <select class="mobile-dropdown" name="applianceType">
+                <option value="">Select Appliance Type</option>
+                <option value="Refrigerator">Refrigerator</option>
+                <option value="Washer">Washer</option>
+                <option value="Dryer">Dryer</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="checkbox" name="applianceType" value="Refrigerator"> Refrigerator</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="applianceType" value="Washer"> Washer</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="applianceType" value="Dryer"> Dryer</label><br>
+        </div>
+
+        <!-- Filter by Configuration -->
+        <div class="filter-section">
+            <h4>Configuration</h4>
+            <select class="mobile-dropdown" name="configuration">
+                <option value="">Select Configuration</option>
+                <option value="French Door">French Door</option>
+                <option value="Side-by-Side">Side-by-Side</option>
+                <option value="Top Freezer">Top Freezer</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="checkbox" name="configuration" value="French Door"> French Door</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="configuration" value="Side-by-Side"> Side-by-Side</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="configuration" value="Top Freezer"> Top Freezer</label><br>
+        </div>
+
+        <!-- Filter by Brand -->
+        <div class="filter-section">
+            <h4>Brand</h4>
+            <select class="mobile-dropdown" name="brand">
+                <option value="">Select Brand</option>
+                <option value="LG">LG</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Whirlpool">Whirlpool</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="checkbox" name="brand" value="LG"> LG</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="brand" value="Samsung"> Samsung</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="brand" value="Whirlpool"> Whirlpool</label><br>
+        </div>
+
+        <!-- Filter by Color -->
+        <div class="filter-section">
+            <h4>Color</h4>
+            <select class="mobile-dropdown" name="color">
+                <option value="">Select Color</option>
+                <option value="Stainless Steel">Stainless Steel</option>
+                <option value="White">White</option>
+                <option value="Black">Black</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="checkbox" name="color" value="Stainless Steel"> Stainless Steel</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="color" value="White"> White</label><br>
+            <label class="desktop-checkbox"><input type="checkbox" name="color" value="Black"> Black</label><br>
+        </div>
+
+        <!-- Filter by Ice Maker -->
+        <div class="filter-section">
+            <h4>Ice Maker</h4>
+            <select class="mobile-dropdown" name="iceMaker">
+                <option value="">Select Ice Maker</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="radio" name="iceMaker" value="true"> Yes</label><br>
+            <label class="desktop-checkbox"><input type="radio" name="iceMaker" value="false"> No</label><br>
+        </div>
+
+        <!-- Filter by Price Range -->
+        <div class="filter-section">
+            <h4>Price Range</h4>
+            <select class="mobile-dropdown" name="price">
+                <option value="">Select Price Range</option>
+                <option value="0-500">$0 - $500</option>
+                <option value="501-1000">$501 - $1000</option>
+                <option value="1001-1500">$1001 - $1500</option>
+                <option value="1501-2000">$1501 - $2000</option>
+            </select>
+
+            <label class="desktop-checkbox"><input type="radio" name="price" value="0-500">$0 - $500</label><br>
+            <label class="desktop-checkbox"><input type="radio" name="price" value="501-1000">$501 - $1000</label><br>
+            <label class="desktop-checkbox"><input type="radio" name="price" value="1001-1500">$1001 - $1500</label><br>
+            <label class="desktop-checkbox"><input type="radio" name="price" value="1501-2000">$1501 - $2000</label><br>
+        </div>
+    </aside>
+
+    <!-- Main Product Display Section -->
+    <main id="products" class="product-section" aria-label="Available products">
+        <h2>Available Products</h2>
+        <div class="product-grid" id="productGrid">
+            <!-- Products will be loaded here via JavaScript -->
+        </div>
+    </main>        
+</div>
+
+<!-- Shipping Information Section -->
+<section id="shipping" class="shipping-section">
+    <h2>Shipping Information</h2>
+    <p>Our appliances are available for pickup at our warehouse in Stanton, CA, where our team can assist with safely loading them onto your truck.</p>
+    <p>If you require delivery, we can arrange it for an additional fee.</p>
+    <p>Delivery rates vary based on distance and the services required, such as installation, haulaways, or navigating stairs.</p>
+    <p>To arrange pickup or delivery, and to discuss shipping rates, please contact us by email at <a href="mailto:info@fastlanewholesale.com">info@fastlanewholesale.com</a> or call us at <a href="tel:7143768210">714-376-8210.</a></p>
+</section>
+
+<!-- About Us Section -->
+<section id="about" class="about-section">
+    <div class="about-container">
+      <div class="about-content">
+        <!-- Image Section -->
+        <div class="about-image">
+          <img class="about-img" src="images/flwaboutus.jpg" alt="About Us Image">
+        </div>
+        <!-- Text Section -->
+        <div class="about-text">
+          <h2>About Us</h2>
+          <p>FLW Appliances specializes in providing high-quality open box, scratch-and-dent, and returned appliances from top brands at unbeatable prices. With years of experience in the appliance industry, we pride ourselves on delivering value to our customers by offering premium products at discounted prices. All of our appliances come with a 90-day warranty, ensuring you can shop with confidence.</p>
+          <p>Whether you're looking for a new fridge, washer, or dryer, FLW Appliances has the perfect product to fit your home and budget. Our commitment to customer satisfaction drives everything we do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <!-- Logo added above the "All rights reserved" text -->
+            <a href="#hero" class="logo-link">
+                <img src="images/flwlogo-cropped.png" alt="Company Logo" class="footer-logo">
+            </a>
+            <p>&copy; 2024 FLW Appliances.<br> All rights reserved.</p>
+        </div>
+        <div class="footer-section">
+            <p><strong>Important Links</strong></p>
+            <ul>
+                <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                <li><a href="termsandconditions.html">Terms and Conditions</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <p><strong>Contact Information:</strong></p>
+            <p>Phone:<br> 714-376-8210</p>
+            <p>Email:<br> <a href="mailto:info@fastlanewholesale.com">info@fastlanewholesale.com</a></p>
+            <p>Address:<br> 7562 Orangewood Ave,<br> Stanton, CA 90680</p>
+            <p><a href="https://www.google.com/maps?q=7562+Orangewood+Ave,+Stanton,+CA+90680" target="_blank">View on Google Maps</a></p>
+        </div>
+        <div class="footer-section">
+            <p><strong>Shipping Information:</strong></p>
+            <p>We offer delivery, installation, and haulaways as needed. Contact us for more information.</p>
+        </div>
+        
+    </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

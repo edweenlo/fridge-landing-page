@@ -1,38 +1,185 @@
-// Load products dynamically from JSON
+// Load products dynamically from JSON and generate filters
 fetch('products.json')
     .then(response => response.json())
     .then(products => {
-        const productGrid = document.getElementById('productGrid');
-        products.forEach(product => {
+        generateFilters(products); // Create filters based on available product data
+        displayProducts(products); // Display products in the grid
+        initializeCarousels(); // Initialize carousel functionality
+        initializeThumbnails(); // Initialize thumbnail functionality
+        toggleFilterUI(); // Initialize the filter UI based on screen size
+    });
+
+// Placeholder for missing image files
+const placeholderImage = 'https://via.placeholder.com/150';
+
+// Function to handle screen size for filters (dropdowns for mobile, checkboxes for desktop)
+function toggleFilterUI() {
+    const isMobile = window.innerWidth <= 768;
+    
+    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+        dropdown.style.display = isMobile ? 'block' : 'none';
+    });
+    
+    document.querySelectorAll('.desktop-checkbox').forEach(checkbox => {
+        checkbox.style.display = isMobile ? 'none' : 'block';
+    });
+}
+
+// Update filter UI on window resize
+window.addEventListener('resize', toggleFilterUI);
+
+// Function to create dynamic filters based on product data
+function generateFilters(products) {
+    const brands = new Set();
+    const configurations = new Set();
+    const applianceTypes = new Set();
+    const colors = new Set();
+    const iceMakerOptions = new Set();
+    const priceRanges = new Set();
+
+    // Extract unique filter values from product data
+    products.forEach(product => {
+        if (product.brand) brands.add(product.brand);
+        if (product.configuration) configurations.add(product.configuration);
+        if (product.applianceType) applianceTypes.add(product.applianceType);
+        if (product.color) colors.add(product.color);
+        iceMakerOptions.add(product.iceMaker ? 'Yes' : 'No');
+        
+        // Define price ranges
+        if (product.price <= 500) {
+            priceRanges.add('0-500');
+        } else if (product.price <= 1000) {
+            priceRanges.add('501-1000');
+        } else if (product.price <= 2000) {
+            priceRanges.add('1001-2000');
+        } else {
+            priceRanges.add('2001+');
+        }
+    });
+
+    const filterContainer = document.querySelector('.filter-sidebar');
+    filterContainer.innerHTML = `
+        <div class="filter-section">
+            <h4>Appliance Type</h4>
+            <select class="mobile-dropdown" name="applianceType">
+                <option value="">Select Appliance Type</option>
+                ${Array.from(applianceTypes).map(option => `<option value="${option}">${option}</option>`).join('')}
+            </select>
+            ${createCheckboxFilter('applianceType', Array.from(applianceTypes))}
+        </div>
+        <div class="filter-section">
+            <h4>Configuration</h4>
+            <select class="mobile-dropdown" name="configuration">
+                <option value="">Select Configuration</option>
+                ${Array.from(configurations).map(option => `<option value="${option}">${option}</option>`).join('')}
+            </select>
+            ${createCheckboxFilter('configuration', Array.from(configurations))}
+        </div>
+        <div class="filter-section">
+            <h4>Brand</h4>
+            <select class="mobile-dropdown" name="brand">
+                <option value="">Select Brand</option>
+                ${Array.from(brands).map(option => `<option value="${option}">${option}</option>`).join('')}
+            </select>
+            ${createCheckboxFilter('brand', Array.from(brands))}
+        </div>
+        <div class="filter-section">
+            <h4>Color</h4>
+            <select class="mobile-dropdown" name="color">
+                <option value="">Select Color</option>
+                ${Array.from(colors).map(option => `<option value="${option}">${option}</option>`).join('')}
+            </select>
+            ${createCheckboxFilter('color', Array.from(colors))}
+        </div>
+        <div class="filter-section">
+            <h4>Ice Maker</h4>
+            <select class="mobile-dropdown" name="iceMaker">
+                <option value="">Select Ice Maker</option>
+                ${Array.from(iceMakerOptions).map(option => `<option value="${option}">${option}</option>`).join('')}
+            </select>
+            ${createCheckboxFilter('iceMaker', Array.from(iceMakerOptions))}
+        </div>
+        <div class="filter-section">
+            <h4>Price Range</h4>
+            <select class="mobile-dropdown" name="price">
+                <option value="">Select Price Range</option>
+                ${Array.from(priceRanges).map(option => `<option value="${option}">${option}</option>`).join('')}
+            </select>
+            ${createCheckboxFilter('price', Array.from(priceRanges))}
+        </div>
+    `;
+
+    document.querySelectorAll('.filter-sidebar input, .filter-sidebar select').forEach(filterElement => {
+        filterElement.addEventListener('change', () => filterProducts(products));
+    });
+}
+
+// Function to create filter checkboxes
+function createCheckboxFilter(filterName, filterOptions) {
+    return filterOptions.map(option => `
+        <label class="desktop-checkbox">
+            <input type="checkbox" name="${filterName}" value="${option}">
+            ${option}
+        </label><br>
+    `).join('');
+}
+
+// Function to display products
+function displayProducts(products) {
+    const productGrid = document.getElementById('productGrid');
+    productGrid.innerHTML = ''; // Clear the product grid
+    
+    products
+        .filter(product => product.Status !== 'Sold') // Exclude sold products
+        .forEach(product => {
             const productElement = document.createElement('div');
             productElement.classList.add('product');
-            productElement.setAttribute('data-brand', product.brand);
-            productElement.setAttribute('data-price', product.price);
-            productElement.setAttribute('data-depth', product.depth);
-            productElement.setAttribute('data-type', product.type);
+        
+            const applianceType = product.applianceType || 'N/A';
+            const configuration = product.configuration || 'N/A';
+            const model = product.model || 'N/A';
+            const color = product.color || 'N/A';
+            const counterDepth = product.depth_type === 'counter' ? 'Counter Depth' : 'Standard Depth';
+            const iceMaker = product.iceMaker === 'TRUE' ? 'Yes' : 'No';
+            const size = product.cuFt ? `${product.cuFt} cu ft` : 'N/A';
+            const dimensions = product.height && product.width && product.depth
+                ? `${product.height}H x ${product.width}W x ${product.depth}D inches`
+                : 'N/A';
+            const retailPrice = product.retailValue || 'N/A';
+            const youSave = product.youSave || 'N/A';
+            const ourPrice = product.price || 'N/A';
 
-            // Add product carousel, storing images as a data attribute
+            const images = Array.isArray(product.images) ? product.images : (product.images ? product.images.split(', ') : [placeholderImage]);
+
+            productElement.setAttribute('data-appliance-type', applianceType.toLowerCase());
+            productElement.setAttribute('data-configuration', configuration.toLowerCase());
+            productElement.setAttribute('data-brand', product.brand ? product.brand.toLowerCase() : '');
+            productElement.setAttribute('data-color', color.toLowerCase());
+            productElement.setAttribute('data-price', product.price || 0);
+            productElement.setAttribute('data-ice-maker', iceMaker.toLowerCase());
+
             productElement.innerHTML = `
-                <div class="carousel" data-images='${JSON.stringify(product.images)}'>
-                    <img src="${product.images[0]}" class="carousel-main-image" alt="${product.productName}">
+                <div class="product-left">
+                    <div class="carousel">
+                        <img src="${images[0]}" class="carousel-main-image" alt="${product.productName}">
+                    </div>
+                    <div class="thumbnail-container">
+                        ${images.map(image => `<img src="${image}" class="thumbnail" alt="Thumbnail for ${product.productName}">`).join('')}
+                    </div>
                 </div>
-                <h3>${product.productName}</h3>
-                <p><strong>Model:</strong> ${product.model}</p>
-                <p><strong>Color:</strong> ${product.color}</p>
-                <p><strong>Cubic Feet:</strong> ${product.cuFt} cu ft</p>
-                <p><strong>Dimensions:</strong> ${product.dimensions.height}H x ${product.dimensions.width}W x ${product.dimensions.depth}D inches</p>
-                <p><strong>Ice Maker:</strong> ${product.iceMaker ? 'Yes' : 'No'}</p>
-                <p class="price">$${product.price}</p>
-
-                <!-- Lightbox for full screen images -->
-                <div class="lightbox">
-                    <div class="lightbox-content">
-                        <img src="${product.images[0]}" class="lightbox-main-image" alt="${product.productName}">
-                        <div class="lightbox-controls">
-                            <button class="lightbox-prev">&lt;</button>
-                            <button class="lightbox-next">&gt;</button>
-                            <button class="close-btn">&times;</button>
-                        </div>
+                <div class="product-right">
+                    <div class="product-info">
+                        <h3>${product.productName}</h3>
+                        <p><strong>Style:</strong> ${configuration}</p>
+                        <p><strong>Model:</strong> ${model}</p>
+                        <p><strong>Color:</strong> ${color}</p>
+                        <p><strong>Depth:</strong> ${counterDepth}</p>
+                        <p><strong>Ice Maker:</strong> ${iceMaker}</p>
+                        <p><strong>Size:</strong> ${size}</p>
+                        <p><strong>Dimensions:</strong> ${dimensions}</p>
+                        <p><strong>Retail Price:</strong> ${retailPrice}</p>
+                        <p><strong>You Save:</strong> ${youSave}</p>
+                        <p class="price"><strong>Our Price:</strong> ${ourPrice}</p>
                     </div>
                 </div>
             `;
@@ -40,150 +187,90 @@ fetch('products.json')
             productGrid.appendChild(productElement);
         });
 
-        // Initialize carousels and lightbox
-        initializeCarousels();
-        initializeLightbox();
-        filterProducts();
-    });
-
-// Carousel initialization with button-only navigation (no keyboard controls)
-function initializeCarousels() {
-    const carousels = document.querySelectorAll('.carousel');
-
-    carousels.forEach((carousel, carouselIndex) => {
-        const productImages = JSON.parse(carousel.getAttribute('data-images'));  // Get the images for the product
-        let currentIndex = 0;
-
-        const carouselImage = carousel.querySelector('.carousel-main-image');
-
-        // Function to update the carousel image
-        const updateImage = () => {
-            carouselImage.src = productImages[currentIndex];
-        };
-    });
+    initializeCarousels();
 }
 
-// Lightbox (Zoom) initialization triggered by clicking on the image
-function initializeLightbox() {
-    const productImages = document.querySelectorAll('.carousel-main-image');
-    const lightboxes = document.querySelectorAll('.lightbox');
+function filterProducts(products) {
+    const selectedApplianceTypes = Array.from(document.querySelectorAll('input[name="applianceType"]:checked, select[name="applianceType"]'))
+        .map(el => el.value.trim().toLowerCase())
+        .filter(Boolean);
+    const selectedConfigurations = Array.from(document.querySelectorAll('input[name="configuration"]:checked, select[name="configuration"]'))
+        .map(el => el.value.trim().toLowerCase())
+        .filter(Boolean);
+    const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked, select[name="brand"]'))
+        .map(el => el.value.trim().toLowerCase())
+        .filter(Boolean);
+    const selectedColors = Array.from(document.querySelectorAll('input[name="color"]:checked, select[name="color"]'))
+        .map(el => el.value.trim().toLowerCase())
+        .filter(Boolean);
+    const selectedPrice = document.querySelector('input[name="price"]:checked, select[name="price"]') 
+        ? document.querySelector('input[name="price"]:checked, select[name="price"]').value.trim()
+        : null;
+    const selectedIceMaker = document.querySelector('input[name="iceMaker"]:checked, select[name="iceMaker"]') 
+        ? document.querySelector('input[name="iceMaker"]:checked, select[name="iceMaker"]').value.trim().toLowerCase()
+        : null;
 
-    productImages.forEach((image, index) => {
-        const lightbox = lightboxes[index];
-        const productImages = JSON.parse(document.querySelectorAll('.carousel')[index].getAttribute('data-images')); // Get the images
-        let currentIndex = 0;
-
-        const lightboxImage = lightbox.querySelector('.lightbox-main-image');
-        const lightboxContent = lightbox.querySelector('.lightbox-content');
-        const prevBtn = lightbox.querySelector('.lightbox-prev');
-        const nextBtn = lightbox.querySelector('.lightbox-next');
-        const dotsContainer = document.createElement('div');
-        dotsContainer.classList.add('lightbox-dots');
-        lightbox.appendChild(dotsContainer);
-
-        // Create dot elements for each image
-        const dots = productImages.map((_, imgIndex) => {
-            const dot = document.createElement('span');
-            dot.classList.add('dot');
-            if (imgIndex === 0) dot.classList.add('active');
-            dotsContainer.appendChild(dot);
-            return dot;
-        });
-
-        const updateDots = () => {
-            dots.forEach((dot, dotIndex) => {
-                if (dotIndex === currentIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-        };
-
-        const updateLightboxImage = () => {
-            lightboxImage.src = productImages[currentIndex];
-            updateDots(); // Update dots when the image changes
-        };
-
-        // Open lightbox when the image is clicked
-        image.addEventListener('click', () => {
-            lightbox.style.display = 'flex';
-
-            // Add event listener for Escape key and keyboard navigation
-            const handleKeydown = (event) => {
-                if (event.key === 'Escape') {
-                    lightbox.style.display = 'none';
-                    document.removeEventListener('keydown', handleKeydown); // Remove listener after closing
-                } else if (event.key === 'ArrowLeft') {
-                    currentIndex = (currentIndex === 0) ? productImages.length - 1 : currentIndex - 1;
-                    updateLightboxImage();
-                } else if (event.key === 'ArrowRight') {
-                    currentIndex = (currentIndex === productImages.length - 1) ? 0 : currentIndex + 1;
-                    updateLightboxImage();
-                }
-            };
-            document.addEventListener('keydown', handleKeydown);
-
-            // Prevent clicks on lightbox-content from closing the lightbox
-            lightboxContent.addEventListener('click', (e) => {
-                e.stopPropagation(); // Stop the click event from bubbling up to the background
-            });
-
-            // Add click-to-close behavior for clicking outside the image
-            lightbox.addEventListener('click', (e) => {
-                console.log('Clicked on background!'); // Log the click event
-                if (e.target === lightbox) {
-                    lightbox.style.display = 'none';
-                    document.removeEventListener('keydown', handleKeydown);
-                }
-            });
-        });
-
-        // Add event listeners to lightbox prev/next buttons
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex === 0) ? productImages.length - 1 : currentIndex - 1;
-            updateLightboxImage();
-        });
-
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex === productImages.length - 1) ? 0 : currentIndex + 1;
-            updateLightboxImage();
-        });
-    });
-}
-
-// Filtering Logic
-document.querySelectorAll('.filter-sidebar input').forEach(input => {
-    input.addEventListener('change', filterProducts);
-});
-
-function filterProducts() {
-    const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked')).map(el => el.value);
-    const selectedPrice = document.querySelector('input[name="price"]:checked') ? document.querySelector('input[name="price"]:checked').value : null;
-    const selectedDepth = document.querySelector('input[name="depth"]:checked') ? document.querySelector('input[name="depth"]:checked').value : null;
-    const selectedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(el => el.value);
-
-    document.querySelectorAll('.product').forEach(product => {
-        const productBrand = product.getAttribute('data-brand');
-        const productPrice = parseInt(product.getAttribute('data-price'));
-        const productDepth = product.getAttribute('data-depth');
-        const productType = product.getAttribute('data-type');
+    // Filter the products based on the selected filters
+    const filteredProducts = products.filter(product => {
+        const productType = product.applianceType ? product.applianceType.trim().toLowerCase() : '';
+        const productConfiguration = product.configuration ? product.configuration.trim().toLowerCase() : '';
+        const productBrand = product.brand ? product.brand.trim().toLowerCase() : '';
+        const productColor = product.color ? product.color.trim().toLowerCase() : '';
+        const productPrice = parseInt(product.price) || 0;
+        const productIceMaker = product.iceMaker ? (product.iceMaker === 'TRUE' ? 'yes' : 'no') : '';
 
         // Check if the product matches the selected filters
+        const matchType = selectedApplianceTypes.length === 0 || selectedApplianceTypes.includes(productType);
+        const matchConfiguration = selectedConfigurations.length === 0 || selectedConfigurations.includes(productConfiguration);
         const matchBrand = selectedBrands.length === 0 || selectedBrands.includes(productBrand);
+        const matchColor = selectedColors.length === 0 || selectedColors.includes(productColor);
         const matchPrice = !selectedPrice || inPriceRange(productPrice, selectedPrice);
-        const matchDepth = !selectedDepth || selectedDepth === productDepth;
-        const matchType = selectedTypes.length === 0 || selectedTypes.includes(productType);
+        const matchIceMaker = selectedIceMaker === null || productIceMaker === selectedIceMaker;
 
-        if (matchBrand && matchPrice && matchDepth && matchType) {
-            product.style.display = 'block';
-        } else {
-            product.style.display = 'none';
-        }
+        return matchType && matchConfiguration && matchBrand && matchColor && matchPrice && matchIceMaker;
+    });
+
+    // Display the filtered products
+    displayProducts(filteredProducts);
+}
+
+
+// Main image carousel initialization
+function initializeCarousels() {
+    const carousels = document.querySelectorAll('.carousel-main-image');
+    carousels.forEach((carousel) => {
+        const thumbnails = Array.from(carousel.closest('.product-left').querySelectorAll('.thumbnail'));
+        const images = thumbnails.map(thumb => thumb.src);
+        let currentIndex = 0;
+
+        // Update image function
+        const updateImage = () => {
+            carousel.src = images[currentIndex];
+        };
+
+        // Main image click to toggle
+        carousel.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        });
+    });
+}
+
+// Thumbnail click event for image changes
+function initializeThumbnails() {
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', (e) => {
+            const mainImage = e.target.closest('.product-left').querySelector('.carousel-main-image');
+            mainImage.src = e.target.src; // Change the main image to the clicked thumbnail
+        });
     });
 }
 
 function inPriceRange(price, selectedRange) {
+    if (selectedRange === '2001+') {
+        return price > 2000;
+    }
     const [min, max] = selectedRange.split('-').map(Number);
     return price >= min && price <= max;
 }
