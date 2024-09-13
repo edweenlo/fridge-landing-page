@@ -273,12 +273,14 @@ body, html {
 
 .product-info h3 {
     margin-top: 0;
+    max-width: 80%;
 }
 
 .product-info p {
     margin: 5px 10px;
     line-height: 1.5;
     color: var(--product-text);
+    max-width: 75%;
 }
 
 .price {
