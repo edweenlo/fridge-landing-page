@@ -4,6 +4,7 @@ body, html {
     padding: 0;
     font-family: Arial, sans-serif;
     background: var(--background-color);
+    overflow-x: hidden;
 }
 
 /* Color Variables */
@@ -295,12 +296,14 @@ body, html {
     .filter-sidebar {
         display: flex;
         flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 10px;
+        overflow-x: hidden;
+        gap: 2px;
         order: 0;
         width: 100%;
-        padding: 10px;
+        padding: 0;
         margin-bottom: 20px;
+        background-color:silver;
+        height: 130px;
     }
 
     .filter-section {
