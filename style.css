@@ -4,7 +4,6 @@ body, html {
     padding: 0;
     font-family: Arial, sans-serif;
     background: var(--background-color);
-    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 /* Color Variables */
@@ -26,52 +25,15 @@ body, html {
     --overlay-color: linear-gradient(to bottom, #ECE6F8, #DCEEF4); /* Gradient overlay */
 }
 
-/* Ensure all elements stay within the viewport */
-.container,
-.top-bar,
-.hero,
-.product-section,
-.filter-sidebar,
-.product-grid,
-body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-/* Reset any horizontal margin or padding on mobile */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Remove any excessive right padding or margin */
-.hero,
-.top-bar,
-.container,
-.product-section {
-    padding-right: 0;
-    margin-right: 0;
-}
-
-/* Ensure no elements have a larger width than 100% */
-img, iframe, .product-grid, .filter-sidebar, .top-bar {
-    width: 100%;
-    max-width: 100%;
-}
-
 /* Top Bar Styles */
 .top-bar {
     background-color: var(--top-bar-bg);
     color: var(--top-bar-text);
-    padding: 10px; /* Adjusted padding */
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
-    max-width: 100%;
-    overflow-x: hidden;
-    flex-wrap: wrap; /* Ensure items wrap if necessary */
 }
 
 .top-bar-left {
@@ -121,21 +83,21 @@ img, iframe, .product-grid, .filter-sidebar, .top-bar {
     }
 }
 
+
 /* Hero Section Styles */
 .hero {
-    position: relative;
+    position: relative; /* Ensure positioning for overlay */
     background-color: var(--hero-bg);
     color: var(--text-color);
     text-align: center;
     padding: 60px 20px;
     background-size: cover;
     background-position: center;
+    border-bottom: 0px solid var(--hero-h1-color);
     background-image: url("/images/fridge-hero-img.JPG");
     background-repeat: no-repeat;
     background-size: cover;
     height: 200px;
-    max-width: 100%;
-    overflow-x: hidden;
 }
 
 .hero::before {
@@ -186,7 +148,6 @@ img, iframe, .product-grid, .filter-sidebar, .top-bar {
     background-color: var(--filter-bg);
     padding: 30px 0 20px 25px;
     border-right: 1px solid var(--filter-border);
-    overflow-x: hidden; /* Prevent overflow in the filter bar */
 }
 
 /* Filter Section Titles */
@@ -204,13 +165,29 @@ img, iframe, .product-grid, .filter-sidebar, .top-bar {
     cursor: pointer;
 }
 
+/* Filter Item Styles */
+.filter-section label {
+    display: block;
+    margin: 0 0 0 10px;
+    padding: 0;
+    cursor: pointer;
+    font-size: 12px; /* Reduced font size */
+}
+
 /* Mobile Dropdown Styles */
 .filter-section select {
     display: block;
     width: auto;
     padding: 5px; /* Adjust padding */
-    font-size: 12px;
+    font-size: 12px; /* Reduced font size */
     margin-bottom: 0;
+}
+
+/* Filter Section Titles */
+.filter-section h4 {
+    margin-top: 8px;
+    font-size: 14px; /* Reduced font size */
+    font-weight: bold;
 }
 
 /* Filter Sidebar General Style */
@@ -218,14 +195,14 @@ img, iframe, .product-grid, .filter-sidebar, .top-bar {
     background-color: var(--filter-bg);
     padding: 30px 0 20px 25px;
     border-right: 1px solid var(--filter-border);
-    font-size: 14px;
+    font-size: 14px; /* Reduced font size for the entire filter sidebar */
 }
+
 
 /* Container Layout */
 .container {
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* Prevent overflow */
 }
 
 /* Product Section Styles */
@@ -245,9 +222,8 @@ img, iframe, .product-grid, .filter-sidebar, .top-bar {
     display: flex;
     background: var(--product-bg);
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-radius: 8px;
-    max-width: 100%;
     overflow: hidden;
 }
 
@@ -395,12 +371,217 @@ img, iframe, .product-grid, .filter-sidebar, .top-bar {
     }
 }
 
-/* Additional updates to prevent horizontal overflow */
-img, iframe, table {
-    max-width: 100%;
-    height: auto;
+/* Shipping Section */
+.shipping-section {
+    background-color: #E9F3F5; /* Light blue */
+    padding: 60px 20px;
+    text-align: center;
 }
 
-* {
-    box-sizing: border-box;
+.shipping-section h2 {
+    color: var(--primary-color);
+}
+
+.shipping-section p {
+    margin-bottom: 20px;
+}
+
+/* About Us Section */
+.about-section {
+    background-color: #f9f9f9; /* Slightly lighter background to differentiate */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about-section h2 {
+    color: var(--primary-color);
+}
+
+.about-section p {
+    margin-bottom: 15px;
+}
+
+/* Contact Form Section */
+.contact-section {
+    background-color: #F5F6F6; /* Light grey background for the contact form */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.contact-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--filter-border);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.contact-form button {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.contact-form button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .section {
+        padding: 40px 20px;
+    }
+
+    .contact-form {
+        padding: 30px;
+    }
+}
+
+/* About Us Section Styles */
+.about-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.about-container h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.about-container p {
+    margin-bottom: 15px;
+}
+
+.about-img {
+    max-width: 70%;
+}
+
+/* Breadcrumb Styles */
+.breadcrumb {
+    font-size: 14px;
+    margin: 20px 0;
+    padding: 10px 0;
+    text-align: left;
+}
+
+.breadcrumb a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    color: var(--text-color);
+}
+
+/* Footer Styles */
+.site-footer {
+    background-color: var(--top-bar-bg);
+    color: var(--top-bar-text);
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1 1 200px;
+    padding: 10px;
+}
+
+.footer-section p,
+.footer-section ul,
+.footer-section a {
+    color: var(--top-bar-text);
+    font-size: 14px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    color: var(--top-bar-text);
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-section a {
+    color: var(--top-bar-text);
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-logo {
+    width: 100px; /* Adjust size of the logo */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Responsive Adjustments for Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-section {
+        flex: 1 1 100%;
+        text-align: center;
+    }
+}
+
+
+.privacy-container {
+    margin: 25px;
+}
+
+.terms-section {
+    margin: 25px;
 }
