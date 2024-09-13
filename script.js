@@ -35,27 +35,36 @@ function generateFilters(products) {
     const applianceTypes = new Set();
     const colors = new Set();
     const iceMakerOptions = new Set();
-    const priceRanges = new Set();
+    const priceRanges = [];
 
-    // Extract unique filter values from product data
-    products.forEach(product => {
-        if (product.brand) brands.add(product.brand);
-        if (product.configuration) configurations.add(product.configuration);
-        if (product.applianceType) applianceTypes.add(product.applianceType);
-        if (product.color) colors.add(product.color);
-        iceMakerOptions.add(product.iceMaker ? 'Yes' : 'No');
-        
-        // Define price ranges
-        if (product.price <= 500) {
-            priceRanges.add('0-500');
-        } else if (product.price <= 1000) {
-            priceRanges.add('501-1000');
-        } else if (product.price <= 2000) {
-            priceRanges.add('1001-2000');
-        } else {
-            priceRanges.add('2001+');
-        }
-    });
+    // Extract unique filter values from product data where Status is "Available"
+    products
+        .filter(product => product.Status !== 'Sold') // Only consider available products
+        .forEach(product => {
+            if (product.brand) brands.add(product.brand);
+            if (product.style) configurations.add(product.style); // Assuming 'style' is 'configuration'
+            if (product.applianceType) applianceTypes.add(product.applianceType);
+            if (product.color) colors.add(product.color);
+            iceMakerOptions.add(product.iceMaker === 'TRUE' ? 'Yes' : 'No');
+
+            // Define price ranges as objects with min and max for correct sorting
+            const productPrice = parseInt(product.price, 10);
+            if (productPrice <= 500) {
+                priceRanges.push({ min: 0, max: 500, label: '$0 - $500' });
+            } else if (productPrice <= 1000) {
+                priceRanges.push({ min: 501, max: 1000, label: '$501 - $1,000' });
+            } else if (productPrice <= 2000) {
+                priceRanges.push({ min: 1001, max: 2000, label: '$1,001 - $2,000' });
+            } else {
+                priceRanges.push({ min: 2001, max: Infinity, label: '$2,001+' });
+            }
+        });
+
+    // Remove duplicates by converting to a Set, then back to array
+    const uniquePriceRanges = Array.from(new Set(priceRanges.map(JSON.stringify))).map(JSON.parse);
+
+    // Sort by the min value of each price range
+    uniquePriceRanges.sort((a, b) => a.min - b.min);
 
     const filterContainer = document.querySelector('.filter-sidebar');
     filterContainer.innerHTML = `
@@ -103,9 +112,9 @@ function generateFilters(products) {
             <h4>Price Range</h4>
             <select class="mobile-dropdown" name="price">
                 <option value="">Select Price Range</option>
-                ${Array.from(priceRanges).map(option => `<option value="${option}">${option}</option>`).join('')}
+                ${uniquePriceRanges.map(option => `<option value="${option.label}">${option.label}</option>`).join('')}
             </select>
-            ${createCheckboxFilter('price', Array.from(priceRanges))}
+            ${createCheckboxFilter('price', uniquePriceRanges.map(option => option.label))}
         </div>
     `;
 
@@ -136,10 +145,10 @@ function displayProducts(products) {
             productElement.classList.add('product');
         
             const applianceType = product.applianceType || 'N/A';
-            const configuration = product.configuration || 'N/A';
+            const style = product.style || 'N/A'; // Changed from configuration to style
             const model = product.model || 'N/A';
             const color = product.color || 'N/A';
-            const counterDepth = product.depth_type === 'counter' ? 'Counter Depth' : 'Standard Depth';
+            const counterDepth = product.depth_type === 'counter depth' ? 'Counter Depth' : 'Standard Depth';
             const iceMaker = product.iceMaker === 'TRUE' ? 'Yes' : 'No';
             const size = product.cuFt ? `${product.cuFt} cu ft` : 'N/A';
             const dimensions = product.height && product.width && product.depth
@@ -149,10 +158,13 @@ function displayProducts(products) {
             const youSave = product.youSave || 'N/A';
             const ourPrice = product.price || 'N/A';
 
-            const images = Array.isArray(product.images) ? product.images : (product.images ? product.images.split(', ') : [placeholderImage]);
+            // Construct the image path based on the product's ID
+            const imageFolderPath = `images/fridge-pictures/${product.ID.replaceAll("/", "-")}`;
+            const imageFileBase = product.ID.replaceAll("/", "_"); // Use underscores for the date part
+            const images = Array.from({ length: 5 }, (_, index) => `${imageFolderPath}/${imageFileBase}-${index + 1}.jpg`);
 
             productElement.setAttribute('data-appliance-type', applianceType.toLowerCase());
-            productElement.setAttribute('data-configuration', configuration.toLowerCase());
+            productElement.setAttribute('data-style', style.toLowerCase());
             productElement.setAttribute('data-brand', product.brand ? product.brand.toLowerCase() : '');
             productElement.setAttribute('data-color', color.toLowerCase());
             productElement.setAttribute('data-price', product.price || 0);
@@ -161,16 +173,16 @@ function displayProducts(products) {
             productElement.innerHTML = `
                 <div class="product-left">
                     <div class="carousel">
-                        <img src="${images[0]}" class="carousel-main-image" alt="${product.productName}">
+                        <img src="${images[0]}" class="carousel-main-image" alt="${product.productName}" onerror="this.onerror=null;this.src='${placeholderImage}';">
                     </div>
                     <div class="thumbnail-container">
-                        ${images.map(image => `<img src="${image}" class="thumbnail" alt="Thumbnail for ${product.productName}">`).join('')}
+                        ${images.map(image => `<img src="${image}" class="thumbnail" alt="Thumbnail for ${product.productName}" onerror="this.onerror=null;this.src='${placeholderImage}';">`).join('')}
                     </div>
                 </div>
                 <div class="product-right">
                     <div class="product-info">
                         <h3>${product.productName}</h3>
-                        <p><strong>Style:</strong> ${configuration}</p>
+                        <p><strong>Style:</strong> ${style}</p>
                         <p><strong>Model:</strong> ${model}</p>
                         <p><strong>Color:</strong> ${color}</p>
                         <p><strong>Depth:</strong> ${counterDepth}</p>
@@ -191,32 +203,20 @@ function displayProducts(products) {
 }
 
 function filterProducts(products) {
-    const selectedApplianceTypes = Array.from(document.querySelectorAll('input[name="applianceType"]:checked, select[name="applianceType"]'))
-        .map(el => el.value.trim().toLowerCase())
-        .filter(Boolean);
-    const selectedConfigurations = Array.from(document.querySelectorAll('input[name="configuration"]:checked, select[name="configuration"]'))
-        .map(el => el.value.trim().toLowerCase())
-        .filter(Boolean);
-    const selectedBrands = Array.from(document.querySelectorAll('input[name="brand"]:checked, select[name="brand"]'))
-        .map(el => el.value.trim().toLowerCase())
-        .filter(Boolean);
-    const selectedColors = Array.from(document.querySelectorAll('input[name="color"]:checked, select[name="color"]'))
-        .map(el => el.value.trim().toLowerCase())
-        .filter(Boolean);
-    const selectedPrice = document.querySelector('input[name="price"]:checked, select[name="price"]') 
-        ? document.querySelector('input[name="price"]:checked, select[name="price"]').value.trim()
-        : null;
-    const selectedIceMaker = document.querySelector('input[name="iceMaker"]:checked, select[name="iceMaker"]') 
-        ? document.querySelector('input[name="iceMaker"]:checked, select[name="iceMaker"]').value.trim().toLowerCase()
-        : null;
+    const selectedApplianceTypes = getFilterValues('applianceType');
+    const selectedConfigurations = getFilterValues('configuration');
+    const selectedBrands = getFilterValues('brand');
+    const selectedColors = getFilterValues('color');
+    const selectedPrice = getFilterValues('price')[0]; // Single selection for price
+    const selectedIceMaker = getFilterValues('iceMaker')[0]; // Single selection for ice maker
 
     // Filter the products based on the selected filters
     const filteredProducts = products.filter(product => {
         const productType = product.applianceType ? product.applianceType.trim().toLowerCase() : '';
-        const productConfiguration = product.configuration ? product.configuration.trim().toLowerCase() : '';
+        const productConfiguration = product.style ? product.style.trim().toLowerCase() : '';
         const productBrand = product.brand ? product.brand.trim().toLowerCase() : '';
         const productColor = product.color ? product.color.trim().toLowerCase() : '';
-        const productPrice = parseInt(product.price) || 0;
+        const productPrice = parseFloat(product.price) || 0;
         const productIceMaker = product.iceMaker ? (product.iceMaker === 'TRUE' ? 'yes' : 'no') : '';
 
         // Check if the product matches the selected filters
@@ -225,7 +225,7 @@ function filterProducts(products) {
         const matchBrand = selectedBrands.length === 0 || selectedBrands.includes(productBrand);
         const matchColor = selectedColors.length === 0 || selectedColors.includes(productColor);
         const matchPrice = !selectedPrice || inPriceRange(productPrice, selectedPrice);
-        const matchIceMaker = selectedIceMaker === null || productIceMaker === selectedIceMaker;
+        const matchIceMaker = !selectedIceMaker || productIceMaker === selectedIceMaker;
 
         return matchType && matchConfiguration && matchBrand && matchColor && matchPrice && matchIceMaker;
     });
@@ -234,6 +234,25 @@ function filterProducts(products) {
     displayProducts(filteredProducts);
 }
 
+// Helper function to get selected values from checkboxes and dropdowns
+function getFilterValues(filterName) {
+    const checkboxes = Array.from(document.querySelectorAll(`input[name="${filterName}"]:checked`));
+    const dropdown = document.querySelector(`select[name="${filterName}"]`);
+    const selectedDropdown = dropdown && dropdown.value ? [dropdown.value.trim().toLowerCase()] : [];
+    
+    const selectedCheckboxes = checkboxes.map(checkbox => checkbox.value.trim().toLowerCase());
+    
+    return [...selectedDropdown, ...selectedCheckboxes];
+}
+
+// Price range comparison
+function inPriceRange(price, selectedRange) {
+    if (selectedRange === '2001+') {
+        return price > 2000;
+    }
+    const [min, max] = selectedRange.split('-').map(Number);
+    return price >= min && price <= max;
+}
 
 // Main image carousel initialization
 function initializeCarousels() {
@@ -265,12 +284,4 @@ function initializeThumbnails() {
             mainImage.src = e.target.src; // Change the main image to the clicked thumbnail
         });
     });
-}
-
-function inPriceRange(price, selectedRange) {
-    if (selectedRange === '2001+') {
-        return price > 2000;
-    }
-    const [min, max] = selectedRange.split('-').map(Number);
-    return price >= min && price <= max;
 }
