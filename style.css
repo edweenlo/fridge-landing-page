@@ -589,26 +589,38 @@ body, html {
 
 
 /* WhatsApp Button Styles */
-.whatsapp_float {
+.whatsapp-chat {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 100;
-    width: 60px;
-    height: 60px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
     background-color: #25D366;
+    padding: 10px;
     border-radius: 50px;
-    text-align: center;
-    box-shadow: 2px 2px 3px #999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.whatsapp_float img.whatsapp_icon {
-    margin-top: 10px;
+.whatsapp-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.whatsapp-icon {
     width: 40px;
     height: 40px;
+    margin-right: 10px;
 }
 
-.whatsapp_float:hover {
-    background-color: #20b15a;
-    transition: background-color 0.3s ease-in-out;
+.whatsapp-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.whatsapp-chat:hover {
+    background-color: #22C35E;
 }
