@@ -137,15 +137,15 @@ function createCheckboxFilter(filterName, filterOptions) {
 function displayProducts(products) {
     const productGrid = document.getElementById('productGrid');
     productGrid.innerHTML = ''; // Clear the product grid
-
+    
     products
         .filter(product => product.Status !== 'Sold') // Exclude sold products
         .forEach(product => {
             const productElement = document.createElement('div');
             productElement.classList.add('product');
-
+        
             const applianceType = product.applianceType || 'N/A';
-            const style = product.style || 'N/A';
+            const style = product.style || 'N/A'; // Changed from configuration to style
             const model = product.model || 'N/A';
             const color = product.color || 'N/A';
             const counterDepth = product.depth_type === 'counter depth' ? 'Counter Depth' : 'Standard Depth';
@@ -158,9 +158,10 @@ function displayProducts(products) {
             const youSave = product.youSave || 'N/A';
             const ourPrice = product.price || 'N/A';
 
-            // Construct the image path based on the product's ID and the folder 'fridge-pics'
-            const imageFolderPath = `images/fridge-pics/${product.ID}`;
-            const images = Array.from({ length: 5 }, (_, index) => `${imageFolderPath}/${product.ID}-${index + 1}.JPG`);
+            // Construct the image path based on the product's ID
+            const imageFolderPath = `images/fridge-pictures/${product.ID.replaceAll("/", "-")}`;
+            const imageFileBase = product.ID.replaceAll("/", "_"); // Use underscores for the date part
+            const images = Array.from({ length: 5 }, (_, index) => `${imageFolderPath}/${imageFileBase}-${index + 1}.jpg`);
 
             productElement.setAttribute('data-appliance-type', applianceType.toLowerCase());
             productElement.setAttribute('data-style', style.toLowerCase());
@@ -188,9 +189,9 @@ function displayProducts(products) {
                         <p><strong>Ice Maker:</strong> ${iceMaker}</p>
                         <p><strong>Size:</strong> ${size}</p>
                         <p><strong>Dimensions:</strong> ${dimensions}</p>
-                        <p><strong>Retail Price:</strong> ${retailPrice}</p>
-                        <p><strong>You Save:</strong> ${youSave}</p>
-                        <p class="price"><strong>Our Price:</strong> ${ourPrice}</p>
+                        <p><strong>Retail Price:</strong> $${retailPrice}</p>
+                        <p><strong>You Save:</strong> $${youSave}</p>
+                        <p class="price"><strong>Our Price:</strong> $${ourPrice}</p>
                     </div>
                 </div>
             `;
