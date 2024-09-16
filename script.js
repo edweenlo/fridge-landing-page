@@ -189,7 +189,7 @@ function displayProducts(products) {
                         <p><strong>Ice Maker:</strong> ${iceMaker}</p>
                         <p><strong>Size:</strong> ${size}</p>
                         <p><strong>Dimensions:</strong> ${dimensions}</p>
-                        <p><strong>Retail Price:</strong> $${retailPrice}</p>
+                        <p><strong>Retail Price:</strong> ${retailPrice}</p>
                         <p><strong>You Save:</strong> $${youSave}</p>
                         <p class="price"><strong>Our Price:</strong> $${ourPrice}</p>
                     </div>
