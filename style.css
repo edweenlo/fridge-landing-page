@@ -586,3 +586,29 @@ body, html {
 .terms-section {
     margin: 25px;
 }
+
+
+/* WhatsApp Button Styles */
+.whatsapp_float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+}
+
+.whatsapp_float img.whatsapp_icon {
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.whatsapp_float:hover {
+    background-color: #20b15a;
+    transition: background-color 0.3s ease-in-out;
+}
