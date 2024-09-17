@@ -35,6 +35,7 @@ function generateFilters(products) {
     const applianceTypes = new Set();
     const colors = new Set();
     const iceMakerOptions = new Set();
+    const depthTypes = new Set(); // New set for Counter Depth filter
     const priceRanges = [];
 
     // Extract unique filter values from product data where Status is "Available"
@@ -45,6 +46,7 @@ function generateFilters(products) {
             if (product.style) configurations.add(product.style); // Assuming 'style' is 'configuration'
             if (product.applianceType) applianceTypes.add(product.applianceType);
             if (product.color) colors.add(product.color);
+            if (product.depth_type) depthTypes.add(product.depth_type); // Add depth types to set
             iceMakerOptions.add(product.iceMaker === 'TRUE' ? 'Yes' : 'No');
 
             // Define price ranges as objects with min and max for correct sorting
@@ -100,6 +102,15 @@ function generateFilters(products) {
             </select>
             ${createCheckboxFilter('color', Array.from(colors))}
         </div>
+        <!-- Add Counter Depth Filter -->
+        <div class="filter-section">
+            <h4>Counter Depth</h4>
+            <select class="mobile-dropdown" name="depth_type">
+                <option value="">Select Depth</option>
+                ${Array.from(depthTypes).map(option => `<option value="${option}">${option}</option>`).join('')}
+            </select>
+            ${createCheckboxFilter('depth_type', Array.from(depthTypes))}
+        </div>
         <div class="filter-section">
             <h4>Ice Maker</h4>
             <select class="mobile-dropdown" name="iceMaker">
@@ -133,73 +144,79 @@ function createCheckboxFilter(filterName, filterOptions) {
     `).join('');
 }
 
-// Function to display products
+// Function to display products and update count
 function displayProducts(products) {
     const productGrid = document.getElementById('productGrid');
+    const productCount = document.getElementById('productCount'); // Grab the count element
     productGrid.innerHTML = ''; // Clear the product grid
+
+    // Filter and display available products
+    const availableProducts = products.filter(product => product.Status !== 'Sold');
     
-    products
-        .filter(product => product.Status !== 'Sold') // Exclude sold products
-        .forEach(product => {
-            const productElement = document.createElement('div');
-            productElement.classList.add('product');
-        
-            const applianceType = product.applianceType || 'N/A';
-            const style = product.style || 'N/A'; // Changed from configuration to style
-            const model = product.model || 'N/A';
-            const color = product.color || 'N/A';
-            const counterDepth = product.depth_type === 'counter depth' ? 'Counter Depth' : 'Standard Depth';
-            const iceMaker = product.iceMaker === 'TRUE' ? 'Yes' : 'No';
-            const size = product.cuFt ? `${product.cuFt} cu ft` : 'N/A';
-            const dimensions = product.height && product.width && product.depth
-                ? `${product.height}H x ${product.width}W x ${product.depth}D inches`
-                : 'N/A';
-            const retailPrice = product.retailValue || 'N/A';
-            const youSave = product.youSave || 'N/A';
-            const ourPrice = product.price || 'N/A';
+    availableProducts.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.classList.add('product');
+    
+        const applianceType = product.applianceType || 'N/A';
+        const style = product.style || 'N/A'; // Changed from configuration to style
+        const model = product.model || 'N/A';
+        const color = product.color || 'N/A';
+        const counterDepth = product.depth_type === 'counter depth' ? 'Counter Depth' : 'Standard Depth';
+        const iceMaker = product.iceMaker === 'TRUE' ? 'Yes' : 'No';
+        const size = product.cuFt ? `${product.cuFt} cu ft` : 'N/A';
+        const dimensions = product.height && product.width && product.depth
+            ? `${product.height}H x ${product.width}W x ${product.depth}D inches`
+            : 'N/A';
+        const retailPrice = product.retailValue || 'N/A';
+        const youSave = product.youSave || 'N/A';
+        const ourPrice = product.price || 'N/A';
 
-            // Construct the image path based on the product's ID
-            const imageFolderPath = `images/fridge-pics-optimized/${product.ID.replaceAll("/", "-")}`;
-            const imageFileBase = product.ID.replaceAll("/", "_"); // Use underscores for the date part
-            const images = Array.from({ length: 5 }, (_, index) => `${imageFolderPath}/${imageFileBase}-${index + 1}.jpg`);
+        // Construct the image path based on the product's ID
+        const imageFolderPath = `images/fridge-pics-optimized/${product.ID.replaceAll("/", "-")}`;
+        const imageFileBase = product.ID.replaceAll("/", "_"); // Use underscores for the date part
+        const images = Array.from({ length: 5 }, (_, index) => `${imageFolderPath}/${imageFileBase}-${index + 1}.jpg`);
 
-            productElement.setAttribute('data-appliance-type', applianceType.toLowerCase());
-            productElement.setAttribute('data-style', style.toLowerCase());
-            productElement.setAttribute('data-brand', product.brand ? product.brand.toLowerCase() : '');
-            productElement.setAttribute('data-color', color.toLowerCase());
-            productElement.setAttribute('data-price', product.price || 0);
-            productElement.setAttribute('data-ice-maker', iceMaker.toLowerCase());
+        productElement.setAttribute('data-appliance-type', applianceType.toLowerCase());
+        productElement.setAttribute('data-style', style.toLowerCase());
+        productElement.setAttribute('data-brand', product.brand ? product.brand.toLowerCase() : '');
+        productElement.setAttribute('data-color', color.toLowerCase());
+        productElement.setAttribute('data-price', product.price || 0);
+        productElement.setAttribute('data-ice-maker', iceMaker.toLowerCase());
+        productElement.setAttribute('data-depth-type', counterDepth.toLowerCase());
 
-            productElement.innerHTML = `
-                <div class="product-left">
-                    <div class="carousel">
-                        <img src="${images[0]}" class="carousel-main-image" alt="${product.productName}" onerror="this.onerror=null;this.src='${placeholderImage}';">
-                    </div>
-                    <div class="thumbnail-container">
-                        ${images.map(image => `<img src="${image}" class="thumbnail" alt="Thumbnail for ${product.productName}" onerror="this.onerror=null;this.src='${placeholderImage}';">`).join('')}
-                    </div>
+        productElement.innerHTML = `
+            <div class="product-left">
+                <div class="carousel">
+                    <img src="${images[0]}" class="carousel-main-image" alt="${product.productName}" onerror="this.onerror=null;this.src='${placeholderImage}';">
                 </div>
-                <div class="product-right">
-                    <div class="product-info">
-                        <h3>${product.productName}</h3>
-                        <p><strong>Style:</strong> ${style}</p>
-                        <p><strong>Model:</strong> ${model}</p>
-                        <p><strong>Color:</strong> ${color}</p>
-                        <p><strong>Depth:</strong> ${counterDepth}</p>
-                        <p><strong>Ice Maker:</strong> ${iceMaker}</p>
-                        <p><strong>Size:</strong> ${size}</p>
-                        <p><strong>Dimensions:</strong> ${dimensions}</p>
-                        <p><strong>Retail Price:</strong> $${retailPrice}</p>
-                        <p><strong>You Save:</strong> $${youSave}</p>
-                        <p class="price"><strong>Our Price:</strong> $${ourPrice}</p>
-                    </div>
+                <div class="thumbnail-container">
+                    ${images.map(image => `<img src="${image}" class="thumbnail" alt="Thumbnail for ${product.productName}" onerror="this.onerror=null;this.src='${placeholderImage}';">`).join('')}
                 </div>
-            `;
+            </div>
+            <div class="product-right">
+                <div class="product-info">
+                    <h3>${product.productName}</h3>
+                    <p><strong>Style:</strong> ${style}</p>
+                    <p><strong>Model:</strong> ${model}</p>
+                    <p><strong>Color:</strong> ${color}</p>
+                    <p><strong>Depth:</strong> ${counterDepth}</p>
+                    <p><strong>Ice Maker:</strong> ${iceMaker}</p>
+                    <p><strong>Size:</strong> ${size}</p>
+                    <p><strong>Dimensions:</strong> ${dimensions}</p>
+                    <p><strong>Retail Price:</strong> $${retailPrice}</p>
+                    <p><strong>You Save:</strong> $${youSave}</p>
+                    <p class="price"><strong>Our Price:</strong> $${ourPrice}</p>
+                </div>
+            </div>
+        `;
 
-            productGrid.appendChild(productElement);
-        });
+        productGrid.appendChild(productElement);
+    });
 
-    initializeCarousels();
+    // Update the product count
+    productCount.textContent = `Total Products: ${availableProducts.length}`;
+
+    initializeCarousels(); // Re-initialize carousels
 }
 
 function filterProducts(products) {
@@ -209,6 +226,7 @@ function filterProducts(products) {
     const selectedColors = getFilterValues('color');
     const selectedPrice = getFilterValues('price')[0]; // Single selection for price
     const selectedIceMaker = getFilterValues('iceMaker')[0]; // Single selection for ice maker
+    const selectedDepthType = getFilterValues('depth_type')[0]; // Single selection for depth type
 
     // Filter the products based on the selected filters
     const filteredProducts = products.filter(product => {
@@ -218,6 +236,7 @@ function filterProducts(products) {
         const productColor = product.color ? product.color.trim().toLowerCase() : '';
         const productPrice = parseFloat(product.price) || 0;
         const productIceMaker = product.iceMaker ? (product.iceMaker === 'TRUE' ? 'yes' : 'no') : '';
+        const productDepthType = product.depth_type ? product.depth_type.trim().toLowerCase() : '';
 
         // Check if the product matches the selected filters
         const matchType = selectedApplianceTypes.length === 0 || selectedApplianceTypes.includes(productType);
@@ -226,8 +245,9 @@ function filterProducts(products) {
         const matchColor = selectedColors.length === 0 || selectedColors.includes(productColor);
         const matchPrice = !selectedPrice || inPriceRange(productPrice, selectedPrice);
         const matchIceMaker = !selectedIceMaker || productIceMaker === selectedIceMaker;
+        const matchDepthType = !selectedDepthType || productDepthType === selectedDepthType;
 
-        return matchType && matchConfiguration && matchBrand && matchColor && matchPrice && matchIceMaker;
+        return matchType && matchConfiguration && matchBrand && matchColor && matchPrice && matchIceMaker && matchDepthType;
     });
 
     // Display the filtered products
@@ -245,12 +265,25 @@ function getFilterValues(filterName) {
     return [...selectedDropdown, ...selectedCheckboxes];
 }
 
-// Price range comparison
 function inPriceRange(price, selectedRange) {
-    if (selectedRange === '2001+') {
+    if (!selectedRange) return true; // If no price range is selected, match all
+
+    // Handle the "2001+" case
+    if (selectedRange === '$2001+') {
         return price > 2000;
     }
-    const [min, max] = selectedRange.split('-').map(Number);
+
+    // Parse the price range (e.g., "$0 - $500") and remove "$", ",", and extra spaces
+    const [min, max] = selectedRange
+        .replace(/\$/g, '')  // Remove dollar signs
+        .replace(/,/g, '')   // Remove commas
+        .replace(/\s/g, '')  // Remove spaces
+        .split('-')
+        .map(Number);
+
+    console.log("Parsed Price Range:", min, max); // Debugging
+
+    // Check if the product price is within the range
     return price >= min && price <= max;
 }
 

@@ -106,6 +106,24 @@
             <label class="desktop-checkbox"><input type="checkbox" name="color" value="Black"> Black</label><br>
         </div>
 
+        <!-- Filter by Counter Depth -->
+<div class="filter-section">
+    <h4>Counter Depth</h4>
+    <select class="mobile-dropdown" name="depth_type">
+        <option value="">Select Depth</option>
+        <option value="counter depth">Counter Depth</option>
+        <option value="standard depth">Standard Depth</option>
+    </select>
+
+    <label class="desktop-checkbox">
+        <input type="radio" name="depth_type" value="counter depth"> Counter Depth
+    </label><br>
+    <label class="desktop-checkbox">
+        <input type="radio" name="depth_type" value="standard depth"> Standard Depth
+    </label><br>
+</div>
+
+
         <!-- Filter by Ice Maker -->
         <div class="filter-section">
             <h4>Ice Maker</h4>
@@ -139,6 +157,9 @@
 
     <!-- Main Product Display Section -->
     <main id="products" class="product-section" aria-label="Available products">
+        <!-- Filter counter -->
+        <div id="productCount">Total Products: 0</div>
+
         <h2>Available Products</h2>
         <div class="product-grid" id="productGrid">
             <!-- Products will be loaded here via JavaScript -->

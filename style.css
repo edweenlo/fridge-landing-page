@@ -624,3 +624,8 @@ body, html {
 .whatsapp-chat:hover {
     background-color: #22C35E;
 }
+
+#productCount {
+    color: gray;
+    font-size: .9rem;
+}
