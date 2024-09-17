@@ -159,7 +159,7 @@ function displayProducts(products) {
             const ourPrice = product.price || 'N/A';
 
             // Construct the image path based on the product's ID
-            const imageFolderPath = `images/fridge-pictures/${product.ID.replaceAll("/", "-")}`;
+            const imageFolderPath = `images/fridge-pics-optimized/${product.ID.replaceAll("/", "-")}`;
             const imageFileBase = product.ID.replaceAll("/", "_"); // Use underscores for the date part
             const images = Array.from({ length: 5 }, (_, index) => `${imageFolderPath}/${imageFileBase}-${index + 1}.jpg`);
 
