@@ -7,11 +7,11 @@ for i in {20..34} 36; do
   if [ -d "$folder" ]; then
     echo "Processing folder: $folder"
     
-    # Go into the folder and rename .JPG files to .tmp
-    for file in "$folder"/*.JPG; do
+    # Go into the folder and rename .tmp files to .jpg
+    for file in "$folder"/*.tmp; do
       if [ -f "$file" ]; then
-        mv "$file" "${file%.JPG}.tmp"
-        echo "Renamed $file to ${file%.JPG}.tmp"
+        mv "$file" "${file%.tmp}.jpg"
+        echo "Renamed $file to ${file%.tmp}.jpg"
       fi
     done
   else
