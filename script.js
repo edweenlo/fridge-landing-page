@@ -172,8 +172,8 @@ function displayProducts(products) {
         const ourPrice = product.price || 'N/A';
 
         // Construct the image path based on the product's ID
-        const imageFolderPath = `images/fridge-pics-optimized/${product.ID.replaceAll("/", "-")}`;
-        const imageFileBase = product.ID.replaceAll("/", "_"); // Use underscores for the date part
+        const imageFolderPath = `images/fridge-pics-optimized/${product.ID.replaceAll("/", "-").replaceAll(" ", "")}`;
+        const imageFileBase = product.ID.replaceAll("/", "_").replaceAll(" ", ""); // Remove spaces in file names
         const images = Array.from({ length: 5 }, (_, index) => `${imageFolderPath}/${imageFileBase}-${index + 1}.jpg`);
 
         productElement.setAttribute('data-appliance-type', applianceType.toLowerCase());
