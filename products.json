@@ -1,6 +1,6 @@
 [
     {
-        "ID": "08-19-2024-1",
+        "ID": "08/19/2024 - 1",
         "Status": "Available",
         "productName": "Frigidaire - 20.0 Cu. Ft Single-Door Refrigerator - White",
         "brand": "Frigidaire",
@@ -19,7 +19,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-2",
+        "ID": "08/19/2024 - 2",
         "Status": "Available",
         "productName": "LG - 27.8 Cu. Ft. 4-Door French Door Smart Refrigerator with InstaView - Stainless Steel",
         "brand": "LG",
@@ -38,7 +38,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-3",
+        "ID": "08/19/2024 - 3",
         "Status": "Sold",
         "productName": "LG - 29.5 Cu. Ft. 4-Door French Door-in-Door Refrigerator with Craft Ice - Stainless Steel",
         "brand": "LG",
@@ -57,7 +57,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-4",
+        "ID": "08/19/2024 - 4",
         "Status": "Available",
         "productName": "LG - 22.5 Cu. Ft. 4-Door French Door-in-Door Counter-Depth Refrigerator with Craft Ice - Stainless Steel",
         "brand": "LG",
@@ -76,7 +76,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-5",
+        "ID": "08/19/2024 - 5",
         "Status": "Available",
         "productName": "LG - 26.9 Cu. Ft. 4-Door French Door Refrigerator with Internal Water Dispenser - Stainless Steel",
         "brand": "LG",
@@ -86,7 +86,7 @@
         "width": "35.75",
         "depth": "32.38",
         "cuFt": "27",
-        "price": "960",
+        "price": "959.996",
         "retailValue": "2399.99",
         "youSave": "1439.994",
         "iceMaker": "TRUE",
@@ -95,7 +95,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-6",
+        "ID": "08/19/2024 - 6",
         "Status": "Available",
         "productName": "Kenmore 23.5-cu ft French Door Refrigerator with Dual Ice Maker (Stainless) ENERGY STAR",
         "brand": "Kenmore",
@@ -114,7 +114,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-7",
+        "ID": "08/19/2024 - 7",
         "Status": "Available",
         "productName": "Samsung - 22 cu. ft. 3-Door French Door Smart Refrigerator in Fingerprint Resistant Stainless Steel",
         "brand": "Samsung",
@@ -133,7 +133,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-8",
+        "ID": "08/19/2024 - 8",
         "Status": "Sold",
         "productName": "Samsung Bespoke 23 cu. ft. 4-Door French Door Smart Refrigerator with Beverage Center in Stainless Steel, Counter Depth",
         "brand": "Samsung",
@@ -152,7 +152,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-9",
+        "ID": "08/19/2024 - 9",
         "Status": "Available",
         "productName": "Bespoke 29 cu. ft. 4-Door French Door Smart Refrigerator with Beverage Center in Stainless Steel, Standard Depth",
         "brand": "Bespoke",
@@ -171,8 +171,8 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-10",
-        "Status": "Available",
+        "ID": "08/19/2024 - 10",
+        "Status": "Sold",
         "productName": "Samsung - BESPOKE 29 cu. ft. 4-Door French Door Smart Refrigerator with Family Hub - Matte Black Steel",
         "brand": "Samsung",
         "model": "RF29BB89008M",
@@ -190,7 +190,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-11",
+        "ID": "08/19/2024 - 11",
         "Status": "Available",
         "productName": "Samsung - BESPOKE 24 cu. ft. 3-Door French Door Counter Depth Smart Refrigerator with AutoFill Water Pitcher - Stainless Steel",
         "brand": "Samsung",
@@ -209,7 +209,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-12",
+        "ID": "08/19/2024 - 12",
         "Status": "Available",
         "productName": "Samsung - 23 cu. ft. 4-Door Flex French Door Counter Depth Smart Refrigerator with Beverage Center - Stainless Steel",
         "brand": "Samsung",
@@ -228,7 +228,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-13",
+        "ID": "08/19/2024 - 13",
         "Status": "Available",
         "productName": "Samsung - 23 cu. ft. 4-Door Flex French Door Counter Depth Smart Refrigerator with Beverage Center - Stainless Steel",
         "brand": "Samsung",
@@ -247,7 +247,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-14",
+        "ID": "08/19/2024 - 14",
         "Status": "Available",
         "productName": "Samsung - 23 cu. ft. 4-Door Flex French Door Counter Depth Smart Refrigerator with Beverage Center - Stainless Steel",
         "brand": "Samsung",
@@ -266,7 +266,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-15",
+        "ID": "08/19/2024 - 15",
         "Status": "Available",
         "productName": "LG - 26.5 Cu. Ft. French Door Counter-Depth Smart Refrigerator with Internal Water - Stainless Steel",
         "brand": "LG",
@@ -285,7 +285,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-16",
+        "ID": "08/19/2024 - 16",
         "Status": "Available",
         "productName": "LG - 26.5 Cu. Ft. French Door Counter-Depth Smart Refrigerator with Internal Water - Stainless Steel",
         "brand": "LG",
@@ -304,7 +304,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-17",
+        "ID": "08/19/2024 - 17",
         "Status": "Available",
         "productName": "LG - 25.5 Cu. Ft. French Door Counter-Depth Smart Refrigerator with Mirror InstaView - Stainless Steel",
         "brand": "LG",
@@ -323,7 +323,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-18",
+        "ID": "08/19/2024 - 18",
         "Status": "Available",
         "productName": "LG - 26 cu. ft. Smart Counter-Depth MAX French Door Refrigerator with Dual Ice Makers in PrintProof Stainless Steel",
         "brand": "LG",
@@ -342,7 +342,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-19",
+        "ID": "08/19/2024 - 19",
         "Status": "Available",
         "productName": "LG - 26 cu. ft. Smart Counter-Depth MAX French Door Refrigerator with Dual Ice Makers in PrintProof Stainless Steel",
         "brand": "LG",
@@ -361,7 +361,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-20",
+        "ID": "08/19/2024 - 20",
         "Status": "Available",
         "productName": "Bosch 800 Series 36 in 21 cu ft Smart Counter Depth French Door Recessed Handle Refrigerator in Stainless Steel w/ Ice & Water",
         "brand": "Bosch",
@@ -380,7 +380,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-21",
+        "ID": "08/19/2024 - 21",
         "Status": "Available",
         "productName": "LG - 29.6 Cu. Ft. 4-Door French Door Smart Refrigerator with Full-Convert Drawer - Stainless Steel",
         "brand": "LG",
@@ -399,7 +399,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-22",
+        "ID": "08/19/2024 - 22",
         "Status": "Available",
         "productName": "Samsung - 30 cu. ft. 3-Door French Door Smart Refrigerator with Family Hub - Stainless Steel",
         "brand": "Samsung",
@@ -418,7 +418,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-23",
+        "ID": "08/19/2024 - 23",
         "Status": "Available",
         "productName": "Samsung - 26 cu. ft. French Door Counter Depth Smart Refrigerator with Four Types of Ice - Stainless Steel",
         "brand": "Samsung",
@@ -437,7 +437,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-24",
+        "ID": "08/19/2024 - 24",
         "Status": "Available",
         "productName": "Samsung - 26 cu. ft. French Door Counter Depth Smart Refrigerator with Four Types of Ice - Stainless Steel",
         "brand": "Samsung",
@@ -456,7 +456,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-25",
+        "ID": "08/19/2024 - 25",
         "Status": "Available",
         "productName": "Samsung - 31 cu. ft. 3-Door French Door Smart Refrigerator with Four Types of Ice - Stainless Steel",
         "brand": "Samsung",
@@ -475,7 +475,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-26",
+        "ID": "08/19/2024 - 26",
         "Status": "Available",
         "productName": "Samsung - 32 cu. ft. 3-Door French Door Smart Refrigerator with Dual Auto Ice Maker - Stainless Steel",
         "brand": "Samsung",
@@ -494,7 +494,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-27",
+        "ID": "08/19/2024 - 27",
         "Status": "Available",
         "productName": "Samsung - 32 cu. ft. 3-Door French Door Smart Refrigerator with Dual Auto Ice Maker - Stainless Steel",
         "brand": "Samsung",
@@ -513,7 +513,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-28",
+        "ID": "08/19/2024 - 28",
         "Status": "Available",
         "productName": "Samsung Bespoke 4-Door Flex with Beverage Zone in Charcoal Beverage Zone panel, Stainless Steel",
         "brand": "Samsung",
@@ -532,7 +532,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-29",
+        "ID": "08/19/2024 - 29",
         "Status": "Sold",
         "productName": "Samsung Bespoke 4-Door Flex with Beverage Zone in Fingerprint Resistant Stainless Steel",
         "brand": "Samsung",
@@ -551,7 +551,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-30",
+        "ID": "08/19/2024 - 30",
         "Status": "Available",
         "productName": "Samsung Bespoke 4-Door Flex with Beverage Zone in Fingerprint Resistant Stainless Steel",
         "brand": "Samsung",
@@ -570,7 +570,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-31",
+        "ID": "08/19/2024 - 31",
         "Status": "Available",
         "productName": "Samsung Bespoke 4-Door Flex with Beverage Center in Fingerprint Resistant Stainless Steel",
         "brand": "Samsung",
@@ -589,7 +589,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-32",
+        "ID": "08/19/2024 - 32",
         "Status": "Available",
         "productName": "Frigidaire Gallery 21.5 Cu. Ft. Counter-Depth 4-Door French Door Refrigerator Stainless Steel",
         "brand": "Frigidaire",
@@ -608,7 +608,7 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-33",
+        "ID": "08/19/2024 - 33",
         "Status": "Available",
         "productName": "Frigidaire - Gallery 26.3 Cu. Ft. 4-Door French Door Refrigerator - Stainless Steel",
         "brand": "Frigidaire",
@@ -618,7 +618,7 @@
         "width": "36",
         "depth": "36.8",
         "cuFt": "26.3",
-        "price": "1250",
+        "price": "1279.996",
         "retailValue": "3199.99",
         "youSave": "1919.994",
         "iceMaker": "TRUE",
@@ -627,7 +627,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-34",
+        "ID": "08/19/2024 - 34",
         "Status": "Available",
         "productName": "LG - 28.6 Cu. Ft. 4-Door French Door Smart Refrigerator with Water Dispenser - Stainless Steel",
         "brand": "LG",
@@ -646,7 +646,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-35",
+        "ID": "08/19/2024 - 35",
         "Status": "Sold",
         "productName": "Samsung - 27.4 cu. ft. Large Capacity Side-by-Side Refrigerator in Stainless Steel",
         "brand": "Samsung",
@@ -665,8 +665,8 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-36",
-        "Status": "Available",
+        "ID": "08/19/2024 - 36",
+        "Status": "Sold",
         "productName": "LG - 20.2 Cu. Ft. Top-Freezer Refrigerator - Stainless Steel",
         "brand": "LG",
         "model": "LTCS20020V",
@@ -684,7 +684,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-37",
+        "ID": "08/19/2024 - 37",
         "Status": "Sold",
         "productName": "Mora 18 cu. ft. Top Freezer Refrigerator - White",
         "brand": "Mora",
@@ -703,7 +703,7 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-38",
+        "ID": "08/19/2024 - 38",
         "Status": "Sold",
         "productName": "LG - 20.2 Cu. Ft. Top-Freezer Refrigerator - Black",
         "brand": "LG",
