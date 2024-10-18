@@ -589,6 +589,7 @@ body, html {
 
 
 /* WhatsApp Button Styles */
+/*
 .whatsapp-chat {
     position: fixed;
     bottom: 20px;
@@ -625,7 +626,48 @@ body, html {
     background-color: #22C35E;
 }
 
+*/
+
 #productCount {
     color: gray;
     font-size: .9rem;
+}
+
+
+/* Text Us Button Styles */
+.text-us-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to bottom, #82c91e, #4caf50); /* Medium lime green at the top, deeper green at the bottom */
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.text-us-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.text-us-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.text-us-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.text-us-chat:hover {
+    background-color: #218838; /* Darker green on hover */
+    cursor: pointer;
 }
