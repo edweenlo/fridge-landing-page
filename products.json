@@ -19,25 +19,6 @@
         "depth_type": "standard"
     },
     {
-        "ID": "08-19-2024-2",
-        "Status": "Available",
-        "productName": "LG - 27.8 Cu. Ft. 4-Door French Door Smart Refrigerator with InstaView - Stainless Steel",
-        "brand": "LG",
-        "model": "LMXS28596S",
-        "color": "Stainless Steel",
-        "height": "69.75",
-        "width": "35.75",
-        "depth": "36.35",
-        "cuFt": "27.9",
-        "price": "1480",
-        "retailValue": "3700",
-        "youSave": "2220",
-        "iceMaker": "TRUE",
-        "applianceType": "Refrigerator",
-        "style": "Fridge - French Door",
-        "depth_type": "standard"
-    },
-    {
         "ID": "08-19-2024-3",
         "Status": "Sold",
         "productName": "LG - 29.5 Cu. Ft. 4-Door French Door-in-Door Refrigerator with Craft Ice - Stainless Steel",
@@ -115,7 +96,7 @@
     },
     {
         "ID": "08-19-2024-7",
-        "Status": "Available",
+        "Status": "Sold",
         "productName": "Samsung - 22 cu. ft. 3-Door French Door Smart Refrigerator in Fingerprint Resistant Stainless Steel",
         "brand": "Samsung",
         "model": "RF22A4121SR",
@@ -285,25 +266,6 @@
         "depth_type": "counter depth"
     },
     {
-        "ID": "08-19-2024-18",
-        "Status": "Available",
-        "productName": "LG - 26 cu. ft. Smart Counter-Depth MAX French Door Refrigerator with Dual Ice Makers in PrintProof Stainless Steel",
-        "brand": "LG",
-        "model": "LCFC26XSS",
-        "color": "Stainless Steel",
-        "height": "70.25",
-        "width": "35.75",
-        "depth": "31.63",
-        "cuFt": "26",
-        "price": "940",
-        "retailValue": "2599",
-        "youSave": "1659",
-        "iceMaker": "TRUE",
-        "applianceType": "Refrigerator",
-        "style": "Fridge - French Door",
-        "depth_type": "counter depth"
-    },
-    {
         "ID": "08-19-2024-19",
         "Status": "Available",
         "productName": "LG - 26 cu. ft. Smart Counter-Depth MAX French Door Refrigerator with Dual Ice Makers in PrintProof Stainless Steel",
@@ -359,25 +321,6 @@
         "applianceType": "Refrigerator",
         "style": "Fridge - French Door",
         "depth_type": "standard"
-    },
-    {
-        "ID": "08-19-2024-23",
-        "Status": "Available",
-        "productName": "Samsung - 26 cu. ft. French Door Counter Depth Smart Refrigerator with Four Types of Ice - Stainless Steel",
-        "brand": "Samsung",
-        "model": "RF27CG5400SR",
-        "color": "Stainless Steel",
-        "height": "70",
-        "width": "35.75",
-        "depth": "31.75",
-        "cuFt": "26",
-        "price": "780",
-        "retailValue": "2429.99",
-        "youSave": "1649.99",
-        "iceMaker": "TRUE",
-        "applianceType": "Refrigerator",
-        "style": "Fridge - French Door",
-        "depth_type": "counter depth"
     },
     {
         "ID": "08-19-2024-24",
@@ -549,25 +492,6 @@
         "applianceType": "Refrigerator",
         "style": "Fridge - French Door",
         "depth_type": "counter depth"
-    },
-    {
-        "ID": "08-19-2024-33",
-        "Status": "Available",
-        "productName": "Frigidaire - Gallery 26.3 Cu. Ft. 4-Door French Door Refrigerator - Stainless Steel",
-        "brand": "Frigidaire",
-        "model": "GRMS2773AF",
-        "color": "Stainless Steel",
-        "height": "70.2",
-        "width": "36",
-        "depth": "36.8",
-        "cuFt": "26.3",
-        "price": "1279.996",
-        "retailValue": "3199.99",
-        "youSave": "1919.994",
-        "iceMaker": "TRUE",
-        "applianceType": "Refrigerator",
-        "style": "Fridge - French Door",
-        "depth_type": "standard"
     },
     {
         "ID": "08-19-2024-34",
